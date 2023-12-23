@@ -1,0 +1,11 @@
+{
+  "name": "webchat",
+  "version": "1.0.0",
+  "description": "Chat application with authentication + websocket.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mikayelyanemil19@gmail.com",
+  "license": "ISC"
+}
