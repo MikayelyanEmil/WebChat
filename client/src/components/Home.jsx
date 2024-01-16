@@ -1,23 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './Home.css'
-
-import {io} from 'socket.io-client';
+import { useEffect, useState } from 'react'
+import '../assets/Home.css'
 
 
-
-function Home() {
-  const [messages, setMessages] = useState([]);
-
-  const socket = io('http://localhost:3000');
-  socket.on('connect', () => {
-    console.log(22222222223333);
-  })
-  socket.on('get-message', (message) => {
-    setMessages([...messages, message]);
-  })
-
+function Home({ messages, socket }) {
+  function apiCall() {
+    fetch('http://localhost:3000/test');
+  }
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -36,6 +24,13 @@ function Home() {
       <div className='test'>
         {messages}
       </div>
+
+      <div>
+        {socket.id }
+      </div>
+
+      <button onClick={() => apiCall()}>Test</button>
+
     </>
   )
 }
