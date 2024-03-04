@@ -20,7 +20,7 @@ authRouter.post('/login', (req, res, next) => {
 
         req.login(user, (error) => {
             if (error) return res.status(500).send('Internal Server Error');
-            res.send({message: 'Authenticated successfully'});
+            res.status(200).send({message: 'Authenticated successfully'});
         })
     })(req, res, next);
 });

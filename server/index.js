@@ -36,15 +36,14 @@ app.use(session({
     cookie: { maxAge: Number(process.env.COOKIE_EXPIRY) },
     store
 }));
-app.use(passport.session());
+app.use(passport.authenticate('session'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/auth', authRouter);
 
 
+
 app.get('/test', (req, res) => {
-    // console.log(req.sessionID);
-    // req.session.test = 123;
     console.log(req.user);
     console.log(store);
     res.send({test: 'Test response'})

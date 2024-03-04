@@ -22,11 +22,11 @@ function Home({ messages, socket }) {
       </form>
 
       <div className='test'>
-        {messages}
+        {/* {messages} */}
       </div>
 
       <div>
-        {socket.id }
+        {/* {socket.id } */}
       </div>
 
       <button onClick={() => apiCall()}>Test</button>

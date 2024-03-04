@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { socket } from './config/socket';
+// import { socket } from './config/socket';
 import Home from './components/Home';
 import Auth from './components/Auth';
 import Chat from './components/Chat';
-
+import { Outlet } from 'react-router-dom';
 
 
 
@@ -11,18 +11,18 @@ import Chat from './components/Chat';
 function App() {
   const [messages, setMessages] = useState([]);
 
-  useEffect(() => {
-    function onGetMessage(message) {
-      console.log(messages);
-      console.log(message);
-      setMessages([...messages, message])
-    }
+  // useEffect(() => {
+  //   function onGetMessage(message) {
+  //     console.log(messages);
+  //     console.log(message);
+  //     setMessages([...messages, message])
+  //   }
 
 
-    socket.on('connect', () => {
-      console.log("connected");
-    });
-    socket.on('get-message', (message) => onGetMessage(message));
+  //   socket.on('connect', () => {
+  //     console.log("connected");
+  //   });
+  //   socket.on('get-message', (message) => onGetMessage(message));
 
 
     // return () => {
@@ -31,7 +31,7 @@ function App() {
     //   });
     //   socket.off('get-message',)
     // }
-  })
+  // })
 
   async function test() {
     const response = await fetch('api/test');
@@ -42,8 +42,12 @@ function App() {
 
   return (
     // <Home messages={messages} socket={socket} />
-    // <Chat></Chat>
-    <> <Auth newUser={false} /> <button onClick={() => test()}>test</button></>
+    <>
+      <Outlet />
+      {/* <Auth newUser={false} />
+      <button onClick={() => test()}>test</button>
+      <a href="/test">Link</a> */}
+    </>
   )
 }
 
