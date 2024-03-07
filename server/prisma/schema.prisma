@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  //url      = env("DATABASE_URL")
+  url      = "postgresql://emil:Mikemil04@localhost:5432/webchat?schema=public"
+}
+
+model User {
+  id          String    @default(uuid()) @id
+  full_name   String
+  username    String
+  email       String    @unique 
+  phone       String
+  password    String
+  created_at  DateTime  @default(now())
+}
