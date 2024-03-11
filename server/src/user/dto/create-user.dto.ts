@@ -12,8 +12,8 @@ export class CreateUserDto {
     @IsEmail({}, { message: 'Please enter valid email address.' })
     email: string;
 
-    @MaxLength(20, { message: 'Please enter valid phone number.' })
-    phone: string;
+    // @MaxLength(20, { message: 'Please enter valid phone number.' })
+    // phone: string;
 
     @IsStrongPassword({ minLength: 8, minNumbers: 4, minUppercase: 1, minSymbols: 1 }, { message: 'Password must be at least 8 characters long, contain 4 digits, 1 symbol, 1 uppercase.' })
     password: string;
