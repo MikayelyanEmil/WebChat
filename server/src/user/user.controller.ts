@@ -6,21 +6,21 @@ import { PrismaClientExceptionFilter } from 'src/prisma-client-exception/prisma-
 
 @Controller('user')
 export class UserController {
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService) { }
 
-    @Get() 
-    get() {
-
-    }
+    // @Get()
+    // get(@Body() emailBody: { email: string }) {
+    //     return this.userService.find(emailBody.email);
+    // }
 
     @Post()
     @UsePipes(ValidationPipe)
     @UseFilters(PrismaClientExceptionFilter)
-    create(@Body() createUserDto: CreateUserDto): Promise<User> {
-        return this.userService.createUser(createUserDto);
+    async create(@Body() createUserDto: CreateUserDto): Promise<User> {
+        return this.userService.create(createUserDto);
     }
 
-    @Delete() 
+    @Delete()
     delete() {
 
     }

@@ -5,7 +5,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   //url      = env("DATABASE_URL")
-  url      = "postgresql://emil:Mikemil04@localhost:5432/webchat?schema=public"
+  url      = env("DATABASE_URL")
 }
 
 model User {

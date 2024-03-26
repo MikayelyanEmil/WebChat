@@ -1,20 +1,24 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
-    constructor(private prisma: PrismaService) {}
+    constructor(private prisma: PrismaService) { }
 
-    async createUser(data: Prisma.UserCreateInput): Promise<User> {
-        // try {
-            return await this.prisma.user.create({
-                data
-            });
-        // } catch (error) {
-            // console.log(Object.keys(error));
-            // console.log(error);
-            // if (error.code == 'P2002') throw new BadRequestException('Account with that email already exists.')    
-        // }
+    async create(data: Prisma.UserCreateInput): Promise<User> {
+        const password = bcrypt.hashSync(data.password, 10);
+        return await this.prisma.user.create({
+            data: {...data, password}
+        });
+    }
+
+    async find(email: string): Promise<User | null> {
+        return await this.prisma.user.findUnique({
+            where: {
+                email
+            }
+        });
     }
 }
